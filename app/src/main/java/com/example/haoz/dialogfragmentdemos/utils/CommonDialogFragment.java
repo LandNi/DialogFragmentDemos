@@ -20,6 +20,8 @@ import android.view.WindowManager;
 
 public class CommonDialogFragment extends DialogFragment {
 
+    private static final String TAG = "CommonDialogFragment";
+
     /**
      * 监听弹出窗是否被取消
      */
@@ -29,14 +31,6 @@ public class CommonDialogFragment extends DialogFragment {
      * 回调获得需要显示的 dialog
      */
     private OnCallDialog mOnCallDialog;
-
-    public interface OnDialogCancelListener {
-        void onCancel();
-    }
-
-    public interface OnCallDialog {
-        Dialog getDialog(Context context);
-    }
 
     public static CommonDialogFragment newInstance(OnCallDialog callDialog, boolean cancelable) {
         return newInstance(callDialog, cancelable, null);
@@ -86,6 +80,19 @@ public class CommonDialogFragment extends DialogFragment {
         if (mCancelListener != null) {
             mCancelListener.onCancel();
         }
+    }
+
+    @Override
+    public void dismiss() {
+        super.dismiss();
+    }
+
+    public interface OnDialogCancelListener {
+        void onCancel();
+    }
+
+    public interface OnCallDialog {
+        Dialog getDialog(Context context);
     }
 }
 
